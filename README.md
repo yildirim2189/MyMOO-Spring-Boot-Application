@@ -73,7 +73,7 @@ spring.datasource.password=admin
 
 ### Extra Notes
 - Example users in moviedump.sql:
-  - ```
+```
     ROLE_USER
     Username: user
     Password: 1
@@ -81,7 +81,7 @@ spring.datasource.password=admin
     ROLE_USER, ROLE_ADMIN
     Username: admin
     Password: 1
-    ```
+```
 # Screenshots
 ## Home Page
 ![image](https://drive.google.com/uc?export=view&id=1NC2vqAH-CViNzalixHZQOexCa_U2oHJn)
