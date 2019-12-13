@@ -56,7 +56,8 @@ spring.datasource.url=jdbc:mysql://localhost:3306/movie_db?useSSL=false&serverTi
 spring.datasource.username=root
 spring.datasource.password=admin
 ```
-Edit prop file for your purpose.
+- Edit prop file for your purpose.
+- Default server port:8080
 
 ###### Import Project To IDE
 - Eclipse:
