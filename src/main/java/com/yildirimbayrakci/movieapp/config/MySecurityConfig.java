@@ -19,7 +19,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserService userService;
-	
+	 
 	@Autowired
 	private CustomOidcUserService oidcUserService;
 
