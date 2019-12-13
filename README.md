@@ -1,90 +1,75 @@
-## MyMOO Movie Application
-
-- Spring Boot
+# MyMOO Movie Application
+## Included Starters
+- Spring Boot DevTools
+- Spring Boot Actuator
+- Spring Web
+- Spring Data JPA
+- MySQL Driver
+- Spring Security
+- Oauth2 Client
 - Thymeleaf
-- Maven
-- Spring DataJPA
-- Select2 API - For multiple selection
-
+### CSS-JS
+- Select2 API (for multiple selection)
+- Bootstrap 4
+- Custom CSS
 --------------------
+### ER Diagram
+![image](https://drive.google.com/uc?export=view&id=10CfeOPvg325IwRcDllUtBvJmRE8pquc9)
 
-### Roller ve İşlevler
-
+## Roles and Functions
 ###### anonymous user
-
-- Normal user olarak kayıt olabilme
-- Kullanıcı adı ve şifre ile giriş, Google hesabı ile giriş yapabilme
-- Film arama
-  - Kategori içerisinde arama
-  - Film adı veya oyuncu adı ile arama
-  - Film adı veya yıla göre sıralama
-
+- Register as a normal user
+- Login with username and password, login with Google account
+- Search
+  - Search in category
+  - Search by title or actor
+- Sort
+  - Sort by title or year
 ###### normal user (ROLE_USER)
-
-- Film ekleme
-- Film düzenleme (eğer kendi eklediği bir film ise)
-- Herhangi bir filmi favori filmlerine ekleme/çıkarma
-- Oyuncu ekleme
-
+- Add new movie
+- Edit movie (if added by that user)
+- Add/Remove to/from favorites any movie.
+- Add actor
 ###### admin user (ROLE_ADMIN)
-
-- Herhangi bir filmi silebilir ya da düzenleyebilir
-- Kategori ekleme, silme, düzenleme
-- /actuator erişim
-
+- Update/Delete any movie
+- Add/Delete/Update categories
+- Access to localhost:8080/actuator
 ----------------
-
-### Running Application
-
+## Running Application
 ###### Setting Up Database
-
-- schema adı: movie_db
-
-- moviedump.sql dosyasını kullanarak MySQL tablo ve verileri ekleyebilirsiniz.
-
-- DB instance application.properties dosyasında;
-
+- Schema name: movie_db
+- Use sql/moviedump.sql file to create tables and insert data.
+- DB instance configuration in: `application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/movie_db?useSSL=false&serverTimezone=UTC
 spring.datasource.username=root
 spring.datasource.password=admin
 ```
+Edit prop file for your purpose.
 
-olarak belirtilmiştir. Bu bilgileri kendinize göre düzenleyiniz.
-
-- Projeyi IDE'nize import edin ve çalıştırın:
-
-###### Eclipse:
-
+###### Import Project To IDE
+- Eclipse:
 > File -> Import -> Maven -> Existing Maven Project -> Browse -> /movieapp
-
-###### Apache NetBeans
-
+- Apache NetBeans
 > File -> Open  Project -> Browse -> /movieapp
-
-###### Command Line (Windows)
-
+###### Run From Command Line (Windows)
 Build: `/movieapp> mvnw intall`
-
 Run: `/movieapp/target> java -jar movieapp-0.0.1-SNAPSHOT.jar`
-
-veya `/movieapp> mvnw spring-boot:runm`
+or `/movieapp> mvnw spring-boot:run`
 
 ---------------------------
 
-#### NOTLAR
-
-- Dump.sql içinde yer alan örnek normal ve admin user:
-
+#### Extra Notes
+- Example users in moviedump.sql:
   - ```
-    Kullanıcı Adı: user
-    Parola: 1
+    ROLE_USER
+    Username: user
+    Password: 1
     ---------
-    Kullanıcı Adı: admin
-    Parola: 1
+    ROLE_USER, ROLE_ADMIN
+    Username: admin
+    Password: 1
     ```
-
-  - Uygulama içi kullanıcı kaydı sadece normal kullanıcılar için vardır. Bu nedenle admin kullanıcı için yukarıdaki kullanıcıyı kullabilirsiniz veya veritabanında user_role tablosuna 2 nolu role_id ekleyin.
 
 
 
