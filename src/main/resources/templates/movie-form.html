@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<th:block th:replace="fragments/select2 :: select2"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Film Ekle/Düzenle</title>
+<style type="text/css">
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+		<form class="form-horizontal mt-4" action="#"
+			th:action="@{/movies/save}" th:object="${movie}" method="POST">
+			<fieldset>
+				<!-- Form Name -->
+				<h3 th:if="${movie.id eq 0}" class="text-center"
+					style="margin-bottom: 30px;">Yeni Film Ekle</h3>
+				<h3 th:unless="${movie.id eq 0}" class="text-center"
+					style="margin-bottom: 30px;" th:text="'Film Düzenle: ' + ${movie.title}"></h3>
+				<!-- Movie Id Hidden -->
+				<input type="hidden" th:field="*{id}" />
+				<!-- Movie Title - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Film
+						Başlığı</label>
+					<div class="col-md-5">
+						<input id="textinput" name="textinput" type="text"
+							placeholder="Film başlığı giriniz" th:field="*{title}"
+							class="form-control input-md" required>
+					</div>
+				</div>
+				<!-- Check Error -->
+				<div th:if="${#fields.hasErrors('title')}"
+					style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err : ${#fields.errors('title')}"
+							th:text="'Title ' + ${err}" />
+					</ul>
+				</div>
+				<!-- Director - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Yönetmen</label>
+					<div class="col-md-5">
+						<input id="textinput" th:field="*{director}" name="textinput"
+							type="text" placeholder="Yönetmen giriniz"
+							class="form-control input-md" required>
+					</div>
+				</div>
+
+				<!-- Release Year - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Yıl</label>
+					<div class="col-md-5">
+						<input id="textinput" th:field="*{releaseYear}" name="textinput"
+							type="text" placeholder="Yıl giriniz"
+							class="form-control input-md">
+					</div>
+				</div>
+
+				<!-- Language - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Diller</label>
+					<div class="col-md-5">
+						<input id="textinput" th:field="*{language}" name="textinput"
+							type="text" placeholder="Dil giriniz"
+							class="form-control input-md">
+
+					</div>
+				</div>
+
+				<!-- Picture URL - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Resim</label>
+					<div class="col-md-5">
+						<input id="textinput" th:field="*{pictureUrl}" name="textinput"
+							type="text" placeholder="Resim URL giriniz (300x445)"
+							class="form-control input-md">
+					</div>
+				</div>
+
+				<!-- Trailer URL - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Youtube
+						URL</label>
+					<div class="col-md-5">
+						<input id="textinput" th:field="*{trailerUrl}" name="textinput"
+							type="text"
+							placeholder="Örn; https://www.youtube.com/watch?v=XXXXXXXXXX"
+							class="form-control input-md">
+					</div>
+				</div>
+
+				<!-- Description - Textarea -->
+				<div class="form-group mb-custom">
+					<label class=" col-form-label control-label" for="textarea">Açıklama</label>
+					<div class="col-md-5">
+						<textarea class="form-control" th:field="*{description}"
+							id="textarea" name="textarea"></textarea>
+					</div>
+				</div>
+				<!-- Actors Select2 -->
+				<div class="form-group">
+					<label class="  col-form-label control-label" for="selectbasic">Oyuncular</label>
+					<div class="col-md-5">
+						<select id="selectActor" th:name="actorIds" multiple="multiple"
+							class="form-control js-example-basic-multiple">
+							<div th:if="${includedActors == null}">
+								<option th:each="actor:${allActors}" th:text="${actor.name}"
+									th:value="${actor.id}"></option>
+							</div>
+							<div th:unless="${includedActors == null}">
+								<option th:each="actor:${allActors}" th:text="${actor.name}"
+									th:value="${actor.id}"
+									th:selected="${#lists.contains(includedActors, actor)}"></option>
+							</div>
+						</select>
+					</div>
+				</div>
+
+				<!-- Categories Select2 -->
+				<div class="form-group">
+					<label class=" col-form-label control-label" for="selectbasic">Kategoriler</label>
+					<div class="col-md-5">
+						<select id="selectCategory" th:name="categoryIds"
+							multiple="multiple"
+							class="form-control js-example-basic-multiple">
+							<!-- if movie has no categories bring all categories non-selected -->
+							<div th:if="${includedCategories == null}">
+								<option th:each="category:${allCategories}"
+									th:text="${category.name}" th:value="${category.id}"></option>
+							</div>
+							<!-- if movie has categories bring those ones selected -->
+							<div th:unless="${includedCategories == null}">
+								<option th:each="category:${allCategories}"
+									th:text="${category.name}" th:value="${category.id}"
+									th:selected="${#lists.contains(includedCategories, category)}"></option>
+							</div>
+						</select>
+					</div>
+				</div>
+
+
+				<!-- Button -->
+				<div class="form-group text-center">
+
+					<div class="col-md-5 mt-2" style="">
+						<button type="submit" id="singlebutton" name="singlebutton"
+							class="col-md-6 btn btn-danger">Gönder</button>
+					</div>
+
+
+				</div>
+				<div class="form-group text-center">
+					<div class="col-md-5 mt-2" style="">
+						<a id="singlebutton" th:href="@{/actors/addActorForm}"
+							class="col-md-6 btn btn-danger">Oyuncu Ekle</a>
+					</div>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')"
+					class="form-group text-center">
+					<div class="col-md-5 mt-2" style="">
+						<a id="singlebutton" th:href="@{/categories/list}"
+							class="col-md-6 btn btn-danger">Kategori Ekle</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('.js-example-basic-multiple').select2();
+		});
+	</script>
+</body>
+</html>

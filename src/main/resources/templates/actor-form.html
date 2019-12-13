@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Oyuncu Ekle</title>
+<style type="text/css">
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+		<form class="form-horizontal mt-4" action="#"
+			style="min-height: 500px" th:action="@{/actors/save}"
+			th:object="${actor}" method="POST">
+			<fieldset>
+				<!-- Form Name -->
+				<h3 class="text-center" style="margin-bottom: 30px;">Yeni Oyuncu
+					Ekle</h3>
+				<!-- Movie Id Hidden -->
+				<input type="hidden" th:field="*{id}" />
+				<!-- Movie Title - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Oyuncu
+						Adı</label>
+					<div class="col-md-5">
+						<input id="textinput" name="textinput" type="text"
+							placeholder="Oyuncu adı giriniz" th:field="*{name}"
+							class="form-control input-md" required>
+					</div>
+				</div>
+				<div th:if="${isActorExist}" class="form-group mb-0">
+					<p class="text-danger">Hata: Oyuncu zaten kayıtlı.</p>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group text-center">
+					<div class="col-md-5 mt-2" style="">
+						<button type="submit" id="singlebutton" name="singlebutton"
+							class="col-md-6 btn btn-danger">Gönder</button>
+					</div>
+				</div>
+				<div class="form-group text-center">
+
+					<div class="col-md-5 mt-2" style="">
+						<a onclick="history.back()" id="singlebutton"
+							name="singlebutton" class="col-md-6 btn btn-danger text-white">Geri
+							Dön</a>
+					</div>
+				</div>
+				<div class="form-group text-center">
+
+					<div class="col-md-5 mt-2" style="">
+						<a th:href="@{/actors/list}" id="singlebutton"
+							name="singlebutton" class="col-md-6 btn btn-danger text-white">Oyuncu Listesi</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+</body>
+</html>

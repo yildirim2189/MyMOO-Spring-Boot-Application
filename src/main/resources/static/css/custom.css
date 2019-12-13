@@ -1,0 +1,163 @@
+.cards-list {
+	z-index: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+#movies .card {
+	margin: 18px;
+	/* 60:89 */
+	width: 170px;
+	height: 252px;
+	border-radius: 40px;
+	box-shadow: -5px -5px 10px 2px rgba(0, 0, 0, 0.22);
+	cursor: pointer;
+	border: none;
+	transition: 0.4s;
+}
+
+#movies .card .card_image {
+	width: inherit;
+	height: inherit;
+	border-radius: 40px;
+}
+
+#movies .card .card_image img {
+	width: inherit;
+	height: inherit;
+	border-radius: 40px;
+	object-fit: cover;
+}
+
+#movies .card .card_title {
+	display: none;
+	background: #fff;
+	border-radius: 40px;
+	margin: 0px 0px 0px 0px;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: -252px;
+	padding: 113px 0px 120px 0px;
+	text-align: center;
+	width: 170px;
+	height: 252px;
+}
+
+#movies .card .card_title p {
+	margin-top: 0;
+	margin-bottom: 0;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#movies .card:hover {
+	transform: scale(0.9, 0.9);
+	box-shadow: 0px 0px 0px 14px #dc3545;
+}
+
+#movies .card:hover .card_title {
+	display: block;
+}
+
+#movies .title-white {
+	color: white;
+}
+
+#movies .title-black {
+	color: black;
+}
+
+@media all and (max-width: 500px) {
+	.card-list {
+		/* On small screens, we are no longer using row direction but column */
+		flex-direction: column;
+	}
+}
+
+.navbar {
+	display: block;
+	text-align: center;
+}
+
+.navbar-brand {
+	margin-right: 0px;
+}
+
+.page-link {
+	color: #dc3545;
+}
+
+.page-link:hover {
+	color: #dc3545;
+}
+
+.page-item.active .page-link {
+	color: #fff;
+	background-color: #dc3545;
+	border-color: #dc3545;
+}
+
+.navbar .dropdown-menu {
+	display: block;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.3s linear;
+	border-radius: 0px 0px 40px 40px;
+}
+
+/* shows the dropdown menu on hover */
+.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover
+	{
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0s, opacity 0.3s linear;
+	border: none;
+}
+
+#profileLink {
+	color: #dc3545;
+}
+
+#dropdown {
+	width: 130px;
+}
+
+.dropdown-item {
+	color: white;
+}
+
+.navbar-brand {
+	font-size: 37px !important;
+	font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	/*width: 140px;*/
+	/*min-width:200px;*/
+	
+}
+
+.navbar-expand-sm .navbar-nav .dropdown-menu {
+	positition: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mb-custom {
+	margin-bottom: 18px;
+}
+.width-33{
+	width:33.333%;
+}
+
+.width-40{
+	width:40%;
+}

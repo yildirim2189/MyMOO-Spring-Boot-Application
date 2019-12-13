@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<!-- Pagination for movies/search - home page -->
+	<nav th:fragment="pagination" aria-label="Pagination" th:if="${movies.totalPages gt 0}">
+		<ul
+			class="pagination justify-content-center font-weight-bold mt-sm-3 mb-sm-4">
+			<li class="page-item"
+				th:classappend="${movies.number eq 0} ? 'disabled'"><a
+				class="page-link"
+				th:href="@{/movies/search?category={cat}&searchBy={sBy}&page={id}&query={idx}&sort={s}
+				(cat=${category},id=${movies.number lt 2 ? 1 : movies.number}, idx=${query}, s=${sort}), sBy=${searchBy}}"
+				aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+					<span aria-hidden="true">&laquo;</span>
+			</a></li>
+			<li class="page-item"
+				th:classappend="${i eq movies.number + 1} ? 'active'"
+				th:each="i : ${#numbers.sequence( 1, movies.totalPages, 1)}"><a
+				class="page-link"
+				th:href="@{/movies/search?category={cat}&searchBy={sBy}&page={id}&query={idx}&sort={s}(cat=${category}, sBy=${searchBy}, id=${i}, idx=${query}, s=${sort})}"
+				th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a></li>
+			<li class="page-item"
+				th:classappend="${movies.number + 1 eq movies.totalPages} ? 'disabled'">
+				<a class="page-link"
+				th:href="@{/movies/search?category={cat}&searchBy={sBy}&page={id}&query={idx}&sort={s}
+				(cat=${category}, id=${movies.number + 2}, sBy=${searchBy}, idx=${query}, s=${sort})}"
+				aria-label="Next" title="Next Page" data-toggle="tooltip"> <span
+					aria-hidden="true">&raquo;</span>
+			</a>
+			</li>
+		</ul>
+	</nav>
+
+</body>
+</html>

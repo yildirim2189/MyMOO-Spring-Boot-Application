@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<title>Erişim Reddedildi</title>
+</head>
+<body>
+	<div class="container mt-5 text-center">
+		<h1>Erişim Reddedildi</h1>
+		<hr>
+		<h2>Üzgünüz. Erişim için yetkiniz bulunmamaktadır.</h2>
+		<a class="btn btn-danger mt-5" th:href="@{/}">Anasayfaya Dön</a>
+	</div>
+</body>
+</html>

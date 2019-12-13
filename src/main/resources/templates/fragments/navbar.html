@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<nav th:fragment="navbar" class="navbar navbar-expand-sm bg-danger navbar-dark justify-content-center"
+		style="height: 150px; border-radius: 0px 0px 400px 400px;">
+		<a class="navbar-brand mt-sm-2" th:href="@{/}"
+			style="font-size: 30px !important">MyMOO</a>
+		<ul class="navbar-nav justify-content-center "
+			style="font-size: 20px; margin-top: 9px">
+			<li class="nav-item"><a class="nav-link"
+				th:href="@{/movies/addMovieForm}">FİLM EKLE</a></li>
+			<li class="nav-item dropdown btn-group "><a class="nav-link"
+				style="width: 190px" href="#" id="navbarDropdownMenuLink"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> KATEGORİLER</a>
+				<div class="dropdown-menu text-center bg-danger"
+					style="padding-bottom: 30px;"
+					aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item"
+						th:href="@{/movies/search?category={cId}
+				(cId=${null})}"
+						th:text="Tümü"></a> <a class="dropdown-item"
+						th:each="category:${allCategories}"
+						th:href="@{/movies/search?category={cId}
+				(cId=${category.Id})}"
+						th:text="${category.name}"></a>
+				</div></li>
+			<li th:unless="${session.user}" class="nav-item"><a
+				th:href="@{/login}" class="nav-link"> GİRİŞ YAP</a></li>
+
+			<li th:if="${session.user}" class="nav-item">
+				<form action="#" th:action="@{/logout}" method="POST">
+					<button style="border: none; background: none;" class="nav-link">ÇIKIŞ
+						YAP</button>
+				</form>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>

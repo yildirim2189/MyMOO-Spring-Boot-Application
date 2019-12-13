@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title th:text="${movie.title}"></title>
+<style>
+.form-group {
+	display: flex;
+}
+
+th {
+	width: 10%;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+		<h3 class="mt-4 text-center mb-custom">Film Detay</h3>
+		
+		<table th:object="${movie}" class="table table-borderless  mt-3"
+			border=0 style="margin-bottom: 100px;">
+			<tr>
+				<td colspan=2>
+					<div class="text-left float-left width-33">
+						<a sec:authorize="hasRole('ROLE_USER')"
+							th:unless="${isMovieFavorite}" class="btn btn-danger col-md-11"
+							th:href="@{/movies/addToFavorites(movieId=${movie.Id})}">Favorilere
+							Ekle</a> <a sec:authorize="hasRole('ROLE_USER')"
+							th:if="${isMovieFavorite}" class="btn btn-danger col-md-11"
+							th:href="@{/movies/removeFromFavorites(movieId=${movie.Id})}">Favorilerden
+							Çıkar</a>
+					</div>
+					<div class="text-center float-left width-33">
+						<a sec:authorize="hasRole('ROLE_USER')"
+							th:if="${(userId == movie.addedBy.id) || (#authorization.expression('hasRole(''ROLE_ADMIN'')'))} "
+							class="btn btn-danger col-md-11"
+							th:href="@{/movies/editMovieForm(movieId=${movie.Id})}">Düzenle</a>
+					</div>
+					<div class="text-right float-left width-33">
+						<a sec:authorize="hasRole('ROLE_ADMIN')"
+							class="btn btn-danger col-md-11"
+							th:href="@{/movies/delete(movieId=${movie.Id})}"
+							onclick="if (!(confirm('Bu filmi silmek istediğinize emin misiniz?'))) return false">Sil</a>
+					</div>
+
+				</td>
+
+				<td><a href="#" class="btn btn-danger col-md">Test</a></td>
+
+
+			</tr>
+			<tr>
+				<th>Başlık</th>
+				<td th:text="*{title}" />
+				<td rowspan="8" class="width-40"><img class="w-100"
+					th:src="${( movie.pictureUrl != null && !#strings.isEmpty( movie.pictureUrl )) ? movie.pictureUrl : '/media/image-not-exist.png'}"
+					th:alt="*{title}" /></td>
+			</tr>
+			<tr>
+				<th>Yönetmen</th>
+				<td th:text="*{director}">
+			</tr>
+			<tr>
+				<th>Yıl</th>
+				<td th:text="*{releaseYear}">
+			</tr>
+			<tr>
+				<th>Diller</th>
+				<td th:text="*{language}">
+			</tr>
+			<tr>
+				<th>Oyuncular</th>
+				<td><span th:each="actor, iterStat : ${movie.actors}"
+					th:text="!${iterStat.last} ? ${actor.name} + ', ' : ${actor.name}"></span></td>
+			</tr>
+			<tr>
+				<th>Kategoriler</th>
+				<td><span th:each="category, iterStat : ${movie.categories}">
+						<a class="text-danger" th:text="${category.name}"
+						th:href="@{/movies/search?category={id}(id=${category.id})}"></a>
+						<span th:if="!${iterStat.last}" th:text="', '"></span>
+				</span></td>
+			</tr>
+			<tr>
+				<th>Ekleyen</th>
+				<td th:text="*{addedBy.firstName} + ' ' + *{addedBy.lastName}"></td>
+			</tr>
+			<tr>
+				<th style="height: 250px">Açıklama</th>
+				<td><div style="overflow-y: scroll; height: 250px;"
+						th:text="*{description}"></div></td>
+			</tr>
+			<tr>
+				<!-- if movie trailer Url exists -->
+				<td
+					th:if="${(movie.trailerUrl != null && !#strings.isEmpty(movie.trailerUrl))}"
+					colspan="3"><iframe width="100%" height="515"
+						th:src="${movie.trailerUrl}" frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen> </iframe></td>
+			</tr>
+
+		</table>
+
+
+
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+</body>
+</html>

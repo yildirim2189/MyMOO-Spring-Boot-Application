@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<title>Kayıt başarılı</title>
+</head>
+
+<body>
+	<div class="container text-center mt-5">
+		<h2>Kayıt Başarılı</h2>
+		<hr>
+		<a class="btn btn-danger text-white" th:href="@{/login}">Giriş Yap</a>
+		<a class="btn btn-danger text-white" th:href="@{/}">Anasayfaya Dön</a>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Kategori Ekle</title>
+
+<style type="text/css">
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+</style>
+</head>
+
+
+<body>
+
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+		<form class="form-horizontal mt-4" action="#"
+			style="min-height: 450px" th:action="@{/categories/save}"
+			th:object="${category}" method="POST">
+			<fieldset>
+				<!-- Form Name -->
+				<h3 th:if="${category.id eq 0}" class="text-center" style="margin-bottom: 30px;">Yeni Kategori Ekle</h3>
+				<h3 th:unless="${category.id eq 0}" class="text-center" style="margin-bottom: 30px;"
+				th:text="'Kategori Düzenle: ' + ${category.name}"></h3>
+				<!-- Movie Id Hidden -->
+				<input type="hidden" th:field="*{id}" />
+				<!-- Movie Title - Text input-->
+				<div class="form-group mb-custom">
+					<label class=" control-label col-form-label" for="textinput">Kategori
+						Adı</label>
+					<div class="col-md-5">
+						<input id="textinput" name="textinput" type="text"
+							placeholder="Kategori adı giriniz" th:field="*{name}"
+							class="form-control input-md" required>
+					</div>
+				</div>
+
+
+				<!-- Button -->
+				<div class="form-group text-center">
+					<div class="col-md-5 mt-2" style="">
+						<button type="submit" id="singlebutton" name="singlebutton"
+							class="col-md-6 btn btn-danger">Gönder</button>
+					</div>
+				</div>
+				<div class="form-group text-center">
+
+					<div class="col-md-5 mt-2" style="">
+						<a th:href="@{/categories/list}" id="singlebutton"
+							name="singlebutton" class="col-md-6 btn btn-danger text-white">Kategorilere
+							Dön</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+
+</body>
+</html>

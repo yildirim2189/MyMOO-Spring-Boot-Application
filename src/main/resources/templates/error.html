@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<title>Hata</title>
+
+</head>
+<body>
+	<div class="container mt-5 text-center">
+		<h1>Bir hata oluştu!</h1>
+		<h2>Lütfen daha sonra tekrar deneyiniz.</h2>
+		 <a class="btn btn-lg btn-danger btn-block text-uppercase text-white mt-5"
+			th:href="@{/}">ANASAYFA</a>
+	</div>
+
+</body>
+</html>

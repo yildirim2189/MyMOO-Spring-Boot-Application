@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Kayıt Ol</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<style>
+ul {
+	list-style-type: circle;
+}
+
+label{
+	padding-left: 2.5rem!important;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-sm-9 col-md-7 col-lg-6 d-lg-block d-md-none d-none d-sm d-sm-none d-xl-block mx-auto">
+				<img id="mamo" alt="mamo" src="../media/mymoo.png">
+			</div>
+			<div class="col-sm-12 col-md-11 col-lg-6 mx-auto">
+				<div class="card card-signin my-4">
+					<div class="card-body">
+						<h5 class="card-title text-center">Hesap Oluştur</h5>
+
+						<div class="form-label-group col-12">
+							<!-- Check for registration error -->
+							<div th:if="${registrationError}" class="alert alert-danger ">
+								<p style="margin-bottom: 0rem" th:text="${registrationError}" />
+							</div>
+
+						</div>
+						<form class="form-signin"
+							th:action="@{/register/processRegistrationForm}" method="POST"
+							th:object="${appUser}">
+
+							<!-- Username -->
+							<div class="form-label-group">
+								<input type="text" th:field="*{username}" id="inputUsername"
+									class="form-control col-11 mx-auto" name="username" placeholder="Username"
+									required autofocus> <label for="inputUsername">Kullanıcı
+									Adı</label>
+							</div>
+							<div th:if="${#fields.hasErrors('username')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('username')}"
+										th:text="'Kullanıcı adı ' + ${err}" />
+								</ul>
+							</div>
+
+							<!-- Password -->
+							<div class="form-label-group">
+								<input type="password" th:field="*{password}" id="inputPassword"
+									class="form-control col-11 mx-auto" name="password" placeholder="Password"
+									required> <label for="inputPassword">Parola</label>
+							</div>
+							<div th:if="${#fields.hasErrors('password')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('password')}"
+										th:text="${err}" />
+								</ul>
+							</div>
+
+							<!-- Confirm Password -->
+							<div class="form-label-group">
+								<input type="password" th:field="*{matchingPassword}"
+									id="confirmPassword" class="form-control col-11 mx-auto"
+									name="confirmPassword" placeholder="Password" required>
+								<label for="confirmPassword">Parola Doğrula</label>
+							</div>
+							<div th:if="${#fields.hasErrors('matchingPassword')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('matchingPassword')}"
+										th:text="${err}" />
+								</ul>
+							</div>
+
+							<!-- First Name -->
+							<div class="form-label-group">
+								<input type="text" th:field="*{firstName}" id="inputFirstName"
+									class="form-control col-11 mx-auto" placeholder="First Name" required>
+								<label for="inputFirstName">Ad</label>
+							</div>
+							<div th:if="${#fields.hasErrors('firstName')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('firstName')}"
+										th:text="'Ad ' + ${err}" />
+								</ul>
+							</div>
+
+							<!-- Last Name -->
+							<div class="form-label-group">
+								<input type="text" th:field="*{lastName}" id="inputLastName"
+									class="form-control col-11 mx-auto" placeholder="Last Name" required>
+								<label for="inputLastName">Soyad</label>
+							</div>
+							<div th:if="${#fields.hasErrors('lastName')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('lastName')}"
+										th:text="'Soyad ' + ${err}" />
+								</ul>
+							</div>
+
+							<!-- Email -->
+							<div class="form-label-group">
+								<input type="email" id="inputEmail" class="form-control col-11 mx-auto"
+									th:field="*{email}" placeholder="Email address" required
+									autofocus> <label for="inputEmail">Email adresi</label>
+							</div>
+							<div th:if="${#fields.hasErrors('email')}"
+								style="margin-bottom: 25px" class="text-danger">
+								<ul>
+									<li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+								</ul>
+							</div>
+							<button class="btn btn-lg btn-danger btn-block text-uppercase col-11 mx-auto"
+								type="submit">HESAP OLUŞTUR</button>
+
+							<div class="mt-3 text-center">
+								<a class="btn btn-lg btn-danger btn-block text-uppercase col-11 mx-auto" th:href="@{/login}">Giriş
+									YAP</a> 
+
+		
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

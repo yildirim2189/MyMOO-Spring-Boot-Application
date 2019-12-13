@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Kategori Listesi</title>
+<style>
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+.w-40{
+	width:40%;
+}
+.w-30{
+	width: 30%;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+
+		<h3 class="text-center mt-4" style="margin-bottom: 30px;">Kategoriler</h3>
+
+
+		<div class="col-6 mx-auto">
+		<table class="table">
+	
+			<tbody>
+				<tr>
+					<td  colspan=3> 
+						<a class="btn btn-danger text-white col-12"
+						th:href="@{/categories/addCategoryForm}"
+						>Yeni Kategori Ekle</a>
+					</td>
+				</tr>
+				<tr th:each="temp : ${allCategories}">
+					<td th:text="${temp.name}" class="w-40" />
+					<td class="w-30"> <a th:href="@{/categories/edit(categoryId=${temp.id})}" class="btn btn-danger col-12"
+					>Düzenle</a>
+					</td><td class="w-30">
+					<a href="#" class="btn btn-danger col-12"
+					onclick="if (!(confirm('Bu kategoriyi silmek istediğinize emin misiniz?'))) return false" 
+					th:href="@{/categories/delete(categoryId=${temp.id})}">Sil</a> </td>
+				</tr>
+
+			</tbody>
+		</table>
+		</div>
+
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

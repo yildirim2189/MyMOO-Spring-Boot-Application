@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Kategori Listesi</title>
+<style>
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+
+		<form class="form-horizontal mt-4" action="#"
+			th:action="@{/categories/save}" th:object="${category}" method="POST">
+			<h3 class="text-center" style="margin-bottom: 30px;">Kategori
+				Ekle/Düzenle</h3>
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group mb-custom">
+				<label class=" control-label col-form-label" for="textinput">Kategori
+					Adı</label>
+				<div class="col-md-5">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="Kategori adı giriniz" th:field="*{name}"
+						class="form-control input-md" required>
+				</div>
+				<div class="col-md-5 " style="">
+					<button type="submit" id="singlebutton" name="singlebutton"
+						class="col-md-6 btn btn-danger">Gönder</button>
+				</div>
+			</div>
+
+			<div class="form-group text-center"></div>
+		</form>
+		<div class="col-8 mx-auto">
+			<table class="table">
+
+				<tbody>
+					<tr>
+						<td colspan=3 style="background: gray">
+							<form class="form-horizontal mt-4" action="#"
+								th:action="@{/categories/save}" th:object="${category}"
+								method="POST">
+
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group mb-custom">
+									<label class=" control-label col-form-label" for="textinput">Kategori
+										Adı</label>
+									<div class="col-md-5">
+										<input id="textinput" name="textinput" type="text"
+											placeholder="Kategori adı giriniz" th:field="*{name}"
+											class="form-control input-md" required>
+									</div>
+									<div class="col-md-5 " style="">
+										<button type="submit" id="singlebutton" name="singlebutton"
+											class="col-md-6 btn btn-danger">Gönder</button>
+									</div>
+								</div>
+
+								<div class="form-group text-center"></div>
+							</form>
+						</td>
+					</tr>
+					<tr th:each="temp : ${categories}">
+						<td th:text="${temp.name}" />
+						<td><a href="#" class="btn btn-danger col-5">Düzenle</a> </td>
+						<td><a
+							href="#" class="btn btn-danger col-5">Sil</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

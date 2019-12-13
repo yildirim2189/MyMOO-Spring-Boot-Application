@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<style>
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+.w-40{
+	width:40%;
+}
+.w-30{
+	width: 30%;
+}
+
+</style>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>Oyuncu Listesi</title>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" th:href="@{/user/profile}"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+		
+		<h3 class="text-center mt-4" style="margin-bottom: 30px;">Oyuncular</h3>
+	
+		<table class="table table-borderless table-hover table-striped">
+
+			<tbody>
+				<tr th:each="temp : ${actors}">
+					<td th:text="${temp.name}" />	
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

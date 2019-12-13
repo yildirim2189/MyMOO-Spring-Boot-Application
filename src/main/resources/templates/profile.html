@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<title>MyMOO - Film Ara</title>
+</head>
+<body>
+	<div class="container">
+		<!-- Place Navbar -->
+		<div th:replace="fragments/navbar :: navbar"></div>
+
+		<!-- If logged in show user info and link -->
+		<h5 th:if="${session.user}" class="text-center mt-sm-4">
+			Hoşgeldiniz, <a id="profileLink" href="#"><span
+				th:text="${session.user.firstName} + ' ' +${session.user.lastName}"
+				class="text-danger"></span></a>
+		</h5>
+
+		<!--  Search, Sort Form -->
+		<div class="form-horizontal mt-4">
+			<!--   <form th:action="@{/movies/search}">
+				 <!--<input type="hidden" name="category" th:value="${category}" /> <input
+					class="form-control ml-0  mb-3 mt-3" style="width: 300px;"
+					type="search" name="query"
+					th:placeholder="'Film ara - Kategori: ' + ${cName}" /
+				<a class="btn btn-danger mb-3 mt-3 mr-sm-3 col-sm-3 text-white">Şifre Değiştir</a>>-->
+				<h3 class="text-center" style="margin-bottom: 30px;">Favori Filmlerim</h3>
+				<!-- <span class="ml-3">Arama:</span> <select th:name="searchBy"
+					class="form-control ml-sm-2 mr-sm-2" id="dropdown">
+					<option value="title">Başlık</option>
+					<option value="actorName">Oyuncu adı</option>
+				</select> <span class="ml-3">Sıralama:</span> <select th:name="sort"
+					class="form-control ml-sm-2 mr-sm-2" id="dropdown">
+					<option value="title">Başlık</option>
+					<option value="releaseYear">Yıl</option>
+				</select>
+			</form> -->
+		</div>
+		<!-- Place pagination  -->
+		<div th:replace="fragments/pagination2 :: pagination2"></div>
+		<!-- Movie Cards -->
+		<div id="movies" style="min-height: 400px;">
+			<div class="text-center mt-sm-3" th:if="${emptyResult}">Sonuç
+				bulunamadı.</div>
+			<div class="cards-list">
+				<div class="card " th:each="movie : ${movies}">
+					<a th:href="@{/movies/details(movieId=${movie.id})}"
+						class="stretched-link"></a>
+					<div class="card_image">
+						<img th:src="${movie.pictureUrl}" />
+					</div>
+					<div class="card_title title-black">
+						<p th:text="${movie.title} + ' (' + ${movie.releaseYear} + ')'"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Place pagination 
+		<div th:replace="fragments/pagination :: pagination"></div> -->
+		<!-- Place footer -->
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+</body>
+</html>

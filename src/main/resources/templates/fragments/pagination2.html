@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+	<!-- Pagination for user profile page -->
+	<nav th:fragment="pagination2" aria-label="Pagination" th:if="${movies.totalPages gt 0}">
+		<ul
+			class="pagination justify-content-center font-weight-bold mt-sm-3 mb-sm-4">
+			<li class="page-item"
+				th:classappend="${movies.number eq 0} ? 'disabled'"><a
+				class="page-link"
+				th:href="@{/user/profile?page={id}(id=${movies.number lt 2 ? 1 : movies.number})}"
+				aria-label="Previous" title="Önceki Sayfa" data-toggle="tooltip">
+					<span aria-hidden="true">&laquo;</span>
+			</a></li>
+			<li class="page-item"
+				th:classappend="${i eq movies.number + 1} ? 'active'"
+				th:each="i : ${#numbers.sequence( 1, movies.totalPages, 1)}"><a
+				class="page-link"
+				th:href="@{/user/profile?page={id}(id=${i})}"
+				th:text="${i}" th:title="${'Sayfa '+ i}" data-toggle="tooltip"></a></li>
+			<li class="page-item"
+				th:classappend="${movies.number + 1 eq movies.totalPages} ? 'disabled'">
+				<a class="page-link"
+				th:href="@{/user/profile?page={id}(id=${movies.number + 2})}"
+				aria-label="Next" title="Sonraki Sayfa" data-toggle="tooltip"> <span
+					aria-hidden="true">&raquo;</span>
+			</a>
+			</li>
+		</ul>
+	</nav>
+
+</body>
+</html>

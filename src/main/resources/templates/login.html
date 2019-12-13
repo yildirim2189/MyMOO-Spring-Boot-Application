@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<title>Giriş Sayfası</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row mt-4">
+			<div class="col-sm-9 col-md-7 col-lg-6 d-lg-block d-md-none d-none d-sm d-sm-none d-xl-block mx-auto">
+				<img id="mamo" alt="mamo" src="../media/mymoo.png">
+			</div>
+			<div class="col-sm-12 col-md-11 col-lg-6 mx-auto">
+				
+	<!--  <img id="mamo" alt="mamo" src="../media/MAMO.png">-->
+
+				<div class="card card-signin my-4">
+					<div class="card-body">
+						<h5 class="card-title text-center">Giriş Yap</h5>
+						<div class="form-group col-12">
+							<div class="col-xs-15">
+								<!-- Check for login error -->
+								<div th:if="${param.error}"
+									class="alert alert-danger col-xs-offset-1 col-xs-10">
+									Geçersiz kullanıcı adı ya da parola</div>
+								<!-- Check for logout -->
+								<div th:if="${param.logout}"
+									class="alert alert-success col-xs-offset-1 col-xs-10">
+									Başarıyla çıkış yaptınız</div>
+							</div>
+						</div>
+						<form class="form-signin" th:action="@{/authenticateTheUser}"
+							method="POST">
+							<div class="form-label-group">
+								<input type="text" id="inputUsername" class="form-control col-11 mx-auto"
+									name="username" placeholder="Username" required autofocus>
+								<label style="padding-left: 2.5rem!important;" for="inputUsername">Kullanıcı Adı</label>
+							</div>
+ 
+							<div class="form-label-group">
+								<input type="password" id="inputPassword" class="form-control col-11 mx-auto"
+									name="password" placeholder="Password" required> <label style="padding-left: 2.5rem!important;"
+									for="inputPassword">Parola</label>
+							</div>
+
+
+							<button class="btn btn-lg btn-danger btn-block text-uppercase col-11 mx-auto"
+								type="submit">GİRİŞ YAP</button>
+							<a
+								class="btn btn-lg btn-danger btn-block text-uppercase text-white col-11 mx-auto"
+								th:href="@{/register/showRegistrationForm}">HESAP OLUŞTUR</a>
+
+							<hr class="my-4">
+							<a
+								class="btn btn-lg btn-google btn-block text-uppercase text-white col-11 mx-auto"
+								th:href="@{/oauth2/authorization/google}"> <i
+								class="fab fa-google mr-2"></i>GOOGLE İLE GİRİŞ YAP
+							</a> <a th:href="@{/}" class="text-white btn btn-danger mb-3 col-11 mx-auto"
+								style="margin-top: 10px; text-align: center; display: block;">ANASAYFA</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
