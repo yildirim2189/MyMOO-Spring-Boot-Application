@@ -62,8 +62,12 @@ spring.datasource.password=admin
 ###### Import Project To IDE
 - Eclipse:
 > File -> Import -> Maven -> Existing Maven Project -> Browse -> /movieapp
+
+> MovieappApplication.java -> Run as Java Application
 - Apache NetBeans
 > File -> Open  Project -> Browse -> /movieapp
+
+> Run Project -> Select Main class -> MovieappApplication.java
 ###### Run From Command Line (Windows)
 - Build: `/movieapp> mvnw intall`
 - Run: `/movieapp/target> java -jar movieapp-0.0.1-SNAPSHOT.jar`
