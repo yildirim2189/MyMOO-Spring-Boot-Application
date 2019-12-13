@@ -49,7 +49,7 @@
 ## Running Application
 ###### Setting Up Database
 - Schema name: movie_db
-- Use sql/moviedump.sql file to create tables and insert data.
+- Use sql/moviedump.sql file to create MySQL tables and populate data.
 - DB instance configuration in: `application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/movie_db?useSSL=false&serverTimezone=UTC
