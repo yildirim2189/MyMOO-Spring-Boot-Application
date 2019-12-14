@@ -83,7 +83,7 @@ th {
 			</tr>
 			<tr>
 				<th>Oyuncular</th>
-				<td><span th:each="actor, iterStat : ${movie.actors}"
+				<td class="pr-4"><span th:each="actor, iterStat : ${movie.actors}"
 					th:text="!${iterStat.last} ? ${actor.name} + ', ' : ${actor.name}"></span></td>
 			</tr>
 			<tr>
@@ -100,7 +100,7 @@ th {
 			</tr>
 			<tr>
 				<th style="height: 250px">Açıklama</th>
-				<td><div style="overflow-y: scroll; height: 250px;"
+				<td><div style="overflow-y: scroll; height: 250px;" class="pr-3"
 						th:text="*{description}"></div></td>
 			</tr>
 			<tr>

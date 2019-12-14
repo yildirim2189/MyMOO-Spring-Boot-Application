@@ -49,7 +49,7 @@ public class CategoryController {
 		}
 
 		movieService.deleteCategory(categoryId);
-		return "redirect:/categories/list";
+		return "redirect:/categories/list?deleted=1";
 	}
 	
 	@GetMapping("/edit")
