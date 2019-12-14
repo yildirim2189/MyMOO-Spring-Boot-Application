@@ -89,7 +89,7 @@ spring.datasource.password=admin
     Username: admin
     Password: 1
 ```
-- In-app registration is only for normal users. Add ROLE_ADMIN(id=2) to user_role table in DB to create custom admin user for your purpose.
+- In-app registration is only available normal user registration. Add ROLE_ADMIN(id=2) to user_role table in DB to create custom admin user.
 # Screenshots
 ## Home Page
 ![image](https://drive.google.com/uc?export=view&id=1NC2vqAH-CViNzalixHZQOexCa_U2oHJn)
