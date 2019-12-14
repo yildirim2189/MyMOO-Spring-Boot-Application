@@ -56,6 +56,10 @@ public class UserController {
 		model.addAttribute("movies", movies);
 		List<Category> categories = movieService.findAllCategories();
 		model.addAttribute("allCategories", categories);
+		
+		if(user.getType().equals("google"))
+			user.setUsername("Google Kullanıcısı");
+		model.addAttribute("user",user);
 
 		return "profile";
 	}

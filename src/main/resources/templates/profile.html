@@ -7,6 +7,16 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <th:block th:replace="fragments/bootstrap :: bootstrap"></th:block>
 <link rel="stylesheet" th:href="@{/css/custom.css}">
+<style type="text/css">
+.form-group {
+	display: flex;
+	justify-content: center;
+}
+
+.form-group label {
+	width: 100px;
+}
+</style>
 <title>MyMOO - Film Ara</title>
 </head>
 <body>
@@ -23,23 +33,42 @@
 
 		<!--  Search, Sort Form -->
 		<div class="form-horizontal mt-4">
-			<!--   <form th:action="@{/movies/search}">
-				 <!--<input type="hidden" name="category" th:value="${category}" /> <input
-					class="form-control ml-0  mb-3 mt-3" style="width: 300px;"
-					type="search" name="query"
-					th:placeholder="'Film ara - Kategori: ' + ${cName}" /
-				<a class="btn btn-danger mb-3 mt-3 mr-sm-3 col-sm-3 text-white">Şifre Değiştir</a>>-->
-				<h3 class="text-center" style="margin-bottom: 30px;">Favori Filmlerim</h3>
-				<!-- <span class="ml-3">Arama:</span> <select th:name="searchBy"
-					class="form-control ml-sm-2 mr-sm-2" id="dropdown">
-					<option value="title">Başlık</option>
-					<option value="actorName">Oyuncu adı</option>
-				</select> <span class="ml-3">Sıralama:</span> <select th:name="sort"
-					class="form-control ml-sm-2 mr-sm-2" id="dropdown">
-					<option value="title">Başlık</option>
-					<option value="releaseYear">Yıl</option>
-				</select>
-			</form> -->
+			<h3 class="text-center" style="margin-bottom: 30px;">Kullanıcı Bilgileri</h3>
+			<div class="form-group mb-custom">
+				<label class=" control-label col-form-label" for="textinput">Kullanıcı
+					Adı</label>
+				<div class="col-md-5">
+					<input id="textinput" name="textinput" th:value="${user.username}"
+						type="text" disabled class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group mb-custom">
+				<label class=" control-label col-form-label" for="textinput">Email</label>
+				<div class="col-md-5">
+					<input id="textinput" name="textinput" th:value="${user.email}"
+						type="text" disabled class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group mb-custom">
+				<label class=" control-label col-form-label" for="textinput">Ad</label>
+				<div class="col-md-5">
+					<input id="textinput" name="textinput" th:value="${user.firstName}"
+						type="text" disabled class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group mb-custom">
+				<label class=" control-label col-form-label" for="textinput">Soyad</label>
+				<div class="col-md-5">
+					<input id="textinput" name="textinput" th:value="${user.lastName}"
+						type="text" disabled class="form-control input-md">
+				</div>
+			</div>
+
+
+
+
+			<h3 class="text-center mt-5" style="margin-bottom: 30px;">Favori
+				Filmlerim</h3>
 		</div>
 		<!-- Place pagination  -->
 		<div th:replace="fragments/pagination2 :: pagination2"></div>
