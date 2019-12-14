@@ -42,6 +42,8 @@
 - Edit movie (if added by that user)
 - Add/Remove to/from favorites any movie.
 - Add actor
+- Visit profile information
+- Check all favorite movies on profile page
 ###### admin user (ROLE_ADMIN)
 - Update/Delete any movie
 - Add/Delete/Update categories
