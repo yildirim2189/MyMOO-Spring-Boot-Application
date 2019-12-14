@@ -95,8 +95,8 @@ spring.datasource.password=admin
 ![image](https://drive.google.com/uc?export=view&id=1NC2vqAH-CViNzalixHZQOexCa_U2oHJn)
 ## Movie Details
 ![image](https://drive.google.com/uc?export=view&id=158i40aYL6P2MDnehOF6HS_kQlrvhZ8KA)
-## Favorite Movies
-![image](https://drive.google.com/uc?export=view&id=1cx_U1MHkZys-Mykl2Fr91L7-fbgqFbGB)
+## User Profile & Favorite Movies
+![image](https://drive.google.com/uc?export=view&id=1qR8h1ubV9BmLM8ayNB_ZmcLgeo1zBwT8)
 ## Add/Edit Movie
 ![image](https://drive.google.com/uc?export=view&id=1aFCf5ZexjyQ9XYDXxQVH1uxZyg7mI3DD)
 
