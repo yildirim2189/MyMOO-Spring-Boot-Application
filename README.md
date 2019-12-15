@@ -1,4 +1,9 @@
 # MyMOO Movie Application
+### News
+- Live demo deployed at (AWS):
+  - http://mymoo.us-east-2.elasticbeanstalk.com/
+  - http://www.yildirimbayrakci.tk/
+
 ## Project Structure
 ![image](https://drive.google.com/uc?export=view&id=1VEhSsayZ1BR7j0w2A8Kc2wGpXLKu0Hth)
 ![image](https://drive.google.com/uc?export=view&id=1INuxAhpwQjaXOJliKrbn9j8J2dckDOU3)
