@@ -75,7 +75,7 @@ CREATE TABLE `movie` (
   `title` varchar(63) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
   `director` varchar(45) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_turkish_ci,
-  `picture_url` varchar(1023) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
+  `picture_url` varchar(1024) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
   `release_year` year(4) DEFAULT NULL,
   `language` varchar(123) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
   `trailer_url` varchar(127) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
